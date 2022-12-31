@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App V2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="frame">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-8">
+            <div class="search-interface">
+              <form>
+                <input
+                  type="search"
+                  class="form-control"
+                  id="search-input"
+                  placeholder="City"
+                  autofocus="off"
+                />
+              </form>
+            </div>
+          </div>
+          <div class="col">
+            <input class="btn btn-primary" type="submit" value="search" />
+          </div>
+        </div>
+      </div>
+
+      <div class="city"><h2>City Name, Country</h2></div>
+      <div class="timezone">Date</div>
+      <div class="row">
+        <div class="col">
+          <div class="weather-forecast">
+            <img src="" class="rounded float-start" alt="icon" /> Description
+            <span>49°F</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="weather-forecast-description">
+            <ul>
+              <li>More Description</li>
+              <li>More Description</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="forecast-prediction">5 day forecast</div>
+    </div>
+    <div class="source">
+      <a href="https://github.com/NoiOh/Weather-App-V2">Open-source code</a> by
+      Noi Houangvan
+    </div>
+  </body>
+</html>
