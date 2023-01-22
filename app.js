@@ -53,26 +53,45 @@ function showWeather(response) {
 }
 
 // Default City
-//function search(city) {
-let key = "ba9b6442401a4fb7923cdf0adatc4bob";
-let units = "imperial";
-let url = `https://api.shecodes.io/weather/v1/current?query=Lisbon&key=${key}&units=${units}`;
-axios.get(url).then(showWeather);
-
-let dateElement = document.querySelector("#date");
-let currentTime = new Date();
-
-dateElement.innerHTML = formatDate(currentTime);
-//}
+function search(city) {
+  let key = "ba9b6442401a4fb7923cdf0adatc4bob";
+  let units = "imperial";
+  let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=${units}`;
+  axios.get(url).then(showWeather);
+}
 
 //Search City
-//function searchCity(event) {
-// event.preventDefault();
-// let city = document.querySelector("#input-value").ariaValueMax;
-//search(city);
-//}
+function searchCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("#input-value").value;
+  search(city);
+}
 
-//let searchResult = document.querySelector("#search-form");
-//searchResult.addEventListener("submit", searchCity);
+function retrievePosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let key = "ba9b6442401a4fb7923cdf0adatc4bob";
+  let units = "imperial";
+  let url = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${key}&units=${units}`;
+  axios.get(url).then(showWeather);
+}
 
-//search("New York");
+//Current Location
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+//date & time
+let dateElement = document.querySelector("#date");
+let currentTime = new Date();
+dateElement.innerHTML = formatDate(currentTime);
+
+//search
+let searchResult = document.querySelector("#search-button");
+searchResult.addEventListener("submit", searchCity);
+
+let currentLocation = document.querySelector("#current-location-button");
+currentLocation.addEventListener("click", getCurrentLocation);
+
+search("Chicago");

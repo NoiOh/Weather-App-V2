@@ -27,7 +27,13 @@ li {
 }
 
 .city {
-  font-size: 30px;
+  font-size: 24px;
+}
+
+.unit {
+  font-size: 10px;
+  position: relative;
+  top: -4px;
 }
 
 .source {
