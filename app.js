@@ -82,6 +82,21 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
 
+//Convert Temperature
+function convertToCelsuis(event) {
+  let temperatureElement = document.querySelector("#forecast-temp");
+  let temperature = temperatureElement.innerHTML;
+  temperature = Number(temperature);
+  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+}
+
+function convertToFahrenheit(event) {
+  let temperatureElement = document.querySelector("#forecast-temp");
+  let temperature = temperatureElement.innerHTML;
+  temperature = Number(temperature);
+  temperatureElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
+}
+
 //date & time
 let dateElement = document.querySelector("#date");
 let currentTime = new Date();
@@ -95,3 +110,10 @@ let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getCurrentLocation);
 
 search("Chicago");
+
+//temperature
+let celsuisLink = document.querySelector("#celsuis");
+celsuisLink.addEventListener("click", convertToCelsuis);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
