@@ -34,11 +34,13 @@ function showWeather(response) {
   let country = response.data.country;
   let iconElement = document.querySelector("#icon");
 
+  fahrenheitTemp = response.data.temperature.current;
+
   document.querySelector("#city-name").innerHTML = `${city}, ${country}`;
   document.querySelector("#forecast-description").innerHTML =
     response.data.condition.description;
   document.querySelector("#forecast-temp").innerHTML = `${Math.round(
-    response.data.temperature.current
+    fahrenheitTemp
   )}`;
   document.querySelector("#humidity").innerHTML = `${Math.round(
     response.data.temperature.humidity
@@ -84,17 +86,20 @@ function getCurrentLocation(event) {
 
 //Convert Temperature
 function convertToCelsuis(event) {
+  event.preventDefault();
+  celsuisLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#forecast-temp");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  let celsiusTemp = (fahrenheitTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
 
 function convertToFahrenheit(event) {
+  event.preventDefault();
+  celsuisLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let temperatureElement = document.querySelector("#forecast-temp");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
 }
 
 //date & time
@@ -109,11 +114,13 @@ searchResult.addEventListener("submit", searchCity);
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-search("Chicago");
-
 //temperature
+let fahrenheitTemp = null;
+
 let celsuisLink = document.querySelector("#celsuis");
 celsuisLink.addEventListener("click", convertToCelsuis);
 
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+search("Chicago");
