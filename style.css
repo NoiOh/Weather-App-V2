@@ -34,6 +34,10 @@ li {
   font-size: 24px;
 }
 
+#date {
+  opacity: 0.8;
+}
+
 .unit {
   font-size: 10px;
   position: relative;
@@ -48,4 +52,17 @@ li {
 .source {
   font-size: 10px;
   margin: 5px 5px;
+}
+
+.weather-forecast-date {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.weather-forecast-temp {
+  font-size: 10px;
+}
+
+.weather-forecast-temp-min {
+  opacity: 0.4;
 }

@@ -1,3 +1,4 @@
+// -- Local Variables --
 //Date & Time
 function formatDate(date) {
   //let date = new Date(date);
@@ -27,9 +28,67 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+// Daily Days
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+
+  return day;
+}
+
+// Daily Forecast
+function getDailyForecast(coordinates) {
+  //console.log(coordinates);
+  let key = "ba9b6442401a4fb7923cdf0adatc4bob";
+  let url = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=imperial`;
+  console.log(url);
+  axios.get(url).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast-prediction");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col-2">
+           <div class="weather-forecast-date">${formatDay(forecastDay.time)}
+           </div>
+           <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+             forecastDay.condition.icon
+           }.png"
+           id="image-forecast"
+            alt=""
+            width="40"
+            />
+            <div class="weather-forecast-temp">
+            <span class="weather-forecast-temp-max">${Math.round(
+              forecastDay.temperature.maximum
+            )}°
+            </span>
+            <span class="weather-forecast-temp-min"> ${Math.round(
+              forecastDay.temperature.minimum
+            )}°
+            </span>
+            </div>
+        </div> 
+    `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // Display Weather
 function showWeather(response) {
-  console.log(response);
+  //console.log(response);
   let city = response.data.city;
   let country = response.data.country;
   let iconElement = document.querySelector("#icon");
@@ -52,6 +111,8 @@ function showWeather(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  getDailyForecast(response.data.coordinates);
 }
 
 // Default City
@@ -102,6 +163,7 @@ function convertToFahrenheit(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
 }
 
+//-- Global Variable --
 //date & time
 let dateElement = document.querySelector("#date");
 let currentTime = new Date();
