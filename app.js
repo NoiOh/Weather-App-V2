@@ -118,8 +118,7 @@ function showWeather(response) {
 // Default City
 function search(city) {
   let key = "ba9b6442401a4fb7923cdf0adatc4bob";
-  let units = "imperial";
-  let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=${units}`;
+  let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=imperial`;
   axios.get(url).then(showWeather);
 }
 
