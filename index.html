@@ -19,9 +19,9 @@
     <div class="body-frame">
       <div class="search-interface">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-8">
-              <form id="search-form">
+          <form id="search-form">
+            <div class="row">
+              <div class="col-sm-8">
                 <input
                   type="search"
                   class="form-control"
@@ -29,25 +29,25 @@
                   placeholder="City"
                   autofocus="off"
                 />
-              </form>
+              </div>
+              <div class="col-sm-2">
+                <input
+                  class="btn btn-primary shadow-sm"
+                  id="search-button"
+                  type="submit"
+                  value="Search"
+                />
+              </div>
+              <div class="col-sm-2 d-none d-sm-block">
+                <input
+                  class="btn btn-success shadow-sm"
+                  id="current-location-button"
+                  type="submit"
+                  value="Current"
+                />
+              </div>
             </div>
-            <div class="col-sm-2">
-              <input
-                class="btn btn-primary shadow-sm"
-                id="search-button"
-                type="submit"
-                value="Search"
-              />
-            </div>
-            <div class="col-sm-2">
-              <input
-                class="btn btn-success shadow-sm"
-                id="current-location-button"
-                type="submit"
-                value="Current"
-              />
-            </div>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -68,7 +68,7 @@
               >
             </div>
           </div>
-          <div class="col-sm-6 p-4">
+          <div class="col-sm p-4">
             <div class="weather-forecast-description">
               <ul>
                 <li>Humidty: <span id="humidity"></span></li>
@@ -79,7 +79,7 @@
         </div>
 
         <div
-          class="forecast-prediction text-center mb-5"
+          class="forecast-prediction text-center mb-4"
           id="forecast-prediction"
         ></div>
       </div>
