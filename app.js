@@ -37,15 +37,6 @@ function formatDay(timestamp) {
   return day;
 }
 
-// Daily Forecast
-function getDailyForecast(coordinates) {
-  //console.log(coordinates);
-  let key = "ba9b6442401a4fb7923cdf0adatc4bob";
-  let url = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=imperial`;
-  console.log(url);
-  axios.get(url).then(displayForecast);
-}
-
 function displayForecast(response) {
   console.log(response.data.daily);
   let forecast = response.data.daily;
@@ -84,6 +75,15 @@ function displayForecast(response) {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+// Daily Forecast
+function getDailyForecast(coordinates) {
+  //console.log(coordinates);
+  let key = "ba9b6442401a4fb7923cdf0adatc4bob";
+  let url = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=imperial`;
+  console.log(url);
+  axios.get(url).then(displayForecast);
 }
 
 // Display Weather
@@ -125,7 +125,7 @@ function search(city) {
 //Search City
 function searchCity(event) {
   event.preventDefault();
-  let city = document.querySelector("#input-value").value;
+  let city = document.querySelector("#search-input").value;
   search(city);
 }
 
@@ -168,13 +168,6 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
-//search
-let searchResult = document.querySelector("#search-button");
-searchResult.addEventListener("submit", searchCity);
-
-let currentLocation = document.querySelector("#current-location-button");
-currentLocation.addEventListener("click", getCurrentLocation);
-
 //temperature
 let fahrenheitTemp = null;
 
@@ -184,4 +177,11 @@ celsuisLink.addEventListener("click", convertToCelsuis);
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
-search("Chicago");
+//search
+let searchResult = document.querySelector("#search-form");
+searchResult.addEventListener("submit", searchCity);
+
+let currentLocation = document.querySelector("#current-location-button");
+currentLocation.addEventListener("click", getCurrentLocation);
+
+search("Paris");
