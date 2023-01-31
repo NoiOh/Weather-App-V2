@@ -184,4 +184,4 @@ searchResult.addEventListener("submit", searchCity);
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-search("Paris");
+search("New York");
